@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:wildberries/pages/Personal.dart';
 import 'package:wildberries/pages/catalog.dart';
 import 'package:wildberries/pages/ShoppingCart.dart';
 
@@ -108,7 +109,17 @@ class WildberriesLesson extends StatelessWidget {
     reverseTransitionDuration: Duration.zero,
   ),
 );}, icon: Icon(Icons.local_grocery_store, color: Colors.grey, size: 30,)),
-        IconButton(onPressed: () {}, icon: Icon(Icons.person, color: Colors.grey, size: 30,)),
+        IconButton(onPressed: () {Navigator.pushReplacement(
+  context, 
+  PageRouteBuilder(
+    pageBuilder: (BuildContext context, Animation<double> animation1, Animation<double> animation2) {
+      return PersonalInformation();
+    },
+    transitionDuration: Duration.zero,
+    reverseTransitionDuration: Duration.zero,
+  ),
+);
+}, icon: Icon(Icons.person, color: Colors.grey, size: 30,)),
       ],)
       ),
       
