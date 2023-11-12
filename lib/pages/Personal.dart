@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wildberries/pages/ShoppingCart.dart';
 import 'package:wildberries/pages/catalog.dart';
 import 'package:wildberries/main.dart';
+import 'package:wildberries/pages/RegisterPage.dart';
 
 class PersonalInformation extends StatelessWidget {
   const PersonalInformation({super.key});
@@ -41,7 +42,40 @@ class PersonalInformation extends StatelessWidget {
                 height: 50,
                 width: 360,
                 decoration: BoxDecoration(color: Colors.purple, borderRadius: BorderRadius.circular(5)),
-                child: Center(child: Text('Войти или зарегистрироваться', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),)),
+                child: Center(child: TextButton( onPressed:() {
+                  showModalBottomSheet(context: context, builder: (BuildContext context) {
+                    return Container(
+                      height: 700,
+                      decoration: BoxDecoration(color: Colors.purple, ),
+                      child: Column(
+                        children: [
+                          SizedBox(height: 50,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Вход', style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w600),)
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextField(decoration: InputDecoration(labelText: 'Email', border: OutlineInputBorder() ) ,),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0).copyWith(bottom: 0),
+                            child: TextField( obscureText: true,   decoration: InputDecoration(labelText: 'Passowrd', border: OutlineInputBorder() ) ,),
+                          ),
+                          TextButton(onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterPage()));
+                          }, 
+                          child:
+                          Text('Зарегестрироваться') 
+                          )
+                        ],
+                      ),
+                    );
+                  }
+                  );
+                }, child: Text('Войти или зарегистрироваться', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),))),
               ),
               SizedBox(height: 10,),
               Row(

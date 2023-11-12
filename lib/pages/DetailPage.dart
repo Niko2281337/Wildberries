@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wildberries/elements/BottomAppBar.dart';
+
 
 class DetailPage extends StatelessWidget {
   const DetailPage({super.key, this.item, this.item4, this.item3, this.item2});
