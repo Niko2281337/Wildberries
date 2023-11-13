@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:wildberries/pages/DetailPage.dart';
 
+
+class ClickerCounter{
+  int count = 0;
+  void increment()
+  {
+    count++;
+  }
+  void delete()
+  {
+    count = 0;
+  }
+}
+
 class ProductList extends StatelessWidget {
-  const ProductList({super.key, this.shoes, this.price, this.brand, this.grade });
+  const ProductList({super.key, this.shoes, this.price, this.brand, this.grade, required this.onPressed,});
    final shoes;
     final price;
     final brand;
     final grade;
+    final VoidCallback onPressed;
+  
+    
+    
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +71,7 @@ class ProductList extends StatelessWidget {
                             Icon(Icons.star, color: Colors.yellow, size: 12,),
                           Text('${grade[index]}', style: TextStyle(color: Colors.white),),
                           ],),
-                          IconButton(onPressed: () {}, iconSize: 20, icon: Icon(Icons.add_shopping_cart_outlined, color: Colors.white, ), padding: EdgeInsets.zero,),
+                          IconButton(onPressed: onPressed, iconSize: 20, icon: Icon(Icons.add_shopping_cart_outlined, color: Colors.white, ), padding: EdgeInsets.zero,),
                       
                         ],),
                       ),

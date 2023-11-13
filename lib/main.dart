@@ -24,18 +24,33 @@ void main() {
   ));
 }
 
-class WildberriesLesson extends StatelessWidget {
+class WildberriesLesson extends StatefulWidget {
   const WildberriesLesson({super.key});
-  
+  @override
+  State<WildberriesLesson> createState() => _WildberriesLessonState();
+}
 
+class _WildberriesLessonState extends State<WildberriesLesson> {
+final ClickerCounter clickerCounter =ClickerCounter();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 31, 31, 31),
-      appBar: AppBar( toolbarHeight: 80, title: SizedBox( height: 50, child: TextField(   decoration: InputDecoration(labelText: 'Поиск', icon: Icon(Icons.search), border: OutlineInputBorder(), ), )), centerTitle: true, backgroundColor: Colors.purple,),
+      appBar: AppBar( toolbarHeight: 80, title: SizedBox( height: 50, child: TextField(   decoration: InputDecoration(labelText: 'Поиск', icon: Icon(Icons.search), border: OutlineInputBorder(), ), )), centerTitle: true, backgroundColor: Colors.purple, actions: [
+        Column(children: [
+          Text('Корзина: ${clickerCounter.count} ', style: TextStyle(fontSize: 15),),
+        IconButton(onPressed: (){setState(() {
+          clickerCounter.delete();
+        });}, icon: Icon(Icons.delete,)),
+        ],)
+      ],),
       body: 
       
-           ProductList(shoes: shoes, price: price, brand: brand, grade: grade,),
+           ProductList(shoes: shoes, price: price, brand: brand, grade: grade, onPressed: () {
+             setState(() {
+               clickerCounter.increment();
+             });
+           },  ),
       
       
       bottomNavigationBar: BottomNavBar()
