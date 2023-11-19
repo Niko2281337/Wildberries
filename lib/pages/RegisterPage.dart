@@ -18,6 +18,7 @@ class RegisterPage extends StatelessWidget {
           TextField( decoration: InputDecoration(labelText: 'Number', border: OutlineInputBorder() ) ,),
           SizedBox(height: 20,),
            TextField( obscureText: true, decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder() ) ,),
+           ElevatedButton(onPressed: (){Navigator.pop(context);}, child: Text('Зарегестрироваться'), )
       ]),),
     );
   }

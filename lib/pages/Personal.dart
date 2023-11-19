@@ -62,7 +62,9 @@ class PersonalInformation extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0).copyWith(bottom: 0),
-                            child: TextField( obscureText: true,   decoration: InputDecoration(labelText: 'Passowrd', border: OutlineInputBorder() ) ,),
+                            child: TextField(   onSubmitted: (value) {
+                              Navigator.pop(context);
+                            },  obscureText: true,   decoration: InputDecoration(labelText: 'Passowrd', border: OutlineInputBorder() ) ,),
                           ),
                           TextButton(onPressed: () {
                             Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterPage()));

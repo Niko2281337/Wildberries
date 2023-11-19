@@ -71,7 +71,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                 Image.asset('${element[index]}', height: 160, width: 160,),
                 SizedBox(width: 60,),
                 Container(
-                  width: 120,
+                  width: 150,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -83,7 +83,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                   ),
                 ),
                 Container(
-                  width: 40,
+                  width: 30,
                   child: Column(
                     children: [
                       IconButton(onPressed: (){setState(() {
