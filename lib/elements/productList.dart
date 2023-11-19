@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:wildberries/pages/DetailPage.dart';
+final List<String> shoes = ['lib/assets/images/shoes1.webp','lib/assets/images/shoes2.jpeg','lib/assets/images/shoes3.jpeg','lib/assets/images/shoes4.jpeg','lib/assets/images/shoes5.jpeg','lib/assets/images/shoes6.jpeg','lib/assets/images/shoes7.jpeg','lib/assets/images/shoes8.jpeg',];
+final List<String> price = ['3599 Р', '5699 Р', '4999 Р', '8999 Р','12999 Р','19999 Р','11999 Р','2599 Р'];
+final List<String> brand = ['Centaman','Lee Cooper','THSO','Running','NIKE','BAPE','NIKE','Pulse'];
+
+final List element = [];
+final List element1 = [];
+final List element2 = [];
+
 
 
 class ClickerCounter{
@@ -14,24 +22,26 @@ class ClickerCounter{
   }
 }
 
-class ProductList extends StatelessWidget {
-  const ProductList({super.key, this.shoes, this.price, this.brand, this.grade, required this.onPressed,});
+class ProductList extends StatefulWidget {
+   ProductList({super.key, this.shoes, this.price, this.brand, this.grade, required this.onPressed, });
    final shoes;
     final price;
     final brand;
     final grade;
     final VoidCallback onPressed;
-  
-    
-    
 
+  @override
+  State<ProductList> createState() => _ProductListState();
+}
+
+class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
 
-    return GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.68), itemCount: shoes.length, itemBuilder: ((context, index) {
+    return GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.68), itemCount: widget.shoes.length, itemBuilder: ((context, index) {
           return GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(item: shoes[index], item2: price[index], item3: brand[index], item4: grade[index],)));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(item: widget.shoes[index], item2: widget.price[index], item3: widget.brand[index], item4: widget.grade[index],)));
             },
             child: Center(
               child: Container(
@@ -41,13 +51,13 @@ class ProductList extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: 10,),
-                   Image.asset("${shoes[index]}", height: 200, width: 170,),
+                   Image.asset("${widget.shoes[index]}", height: 200, width: 170,),
                       Padding(
                         padding: const EdgeInsets.only(left: 16),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text('${price[index]}', style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w700), ),
+                            Text('${widget.price[index]}', style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w700), ),
                           ],
                         ),
                       ),
@@ -57,7 +67,7 @@ class ProductList extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text('${brand[index]}', style: TextStyle(color: Colors.white, fontSize: 13 ),),
+                            Text('${widget.brand[index]}', style: TextStyle(color: Colors.white, fontSize: 13 ),),
                           ],
                         ),
                       ),
@@ -69,9 +79,13 @@ class ProductList extends StatelessWidget {
                           children: [
                           Row(children: [
                             Icon(Icons.star, color: Colors.yellow, size: 12,),
-                          Text('${grade[index]}', style: TextStyle(color: Colors.white),),
+                          Text('${widget.grade[index]}', style: TextStyle(color: Colors.white),),
                           ],),
-                          IconButton(onPressed: onPressed, iconSize: 20, icon: Icon(Icons.add_shopping_cart_outlined, color: Colors.white, ), padding: EdgeInsets.zero,),
+                          IconButton(onPressed: () {setState(() {
+                          element.add(shoes[index]);
+                          element1.add(price[index]);
+                          element2.add(brand[index]);
+                          });}, iconSize: 20, icon: Icon(Icons.add_shopping_cart_outlined, color: Colors.white, ), padding: EdgeInsets.zero,),
                       
                         ],),
                       ),

@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:wildberries/elements/productList.dart';
 import 'package:wildberries/main.dart';
 import 'package:wildberries/pages/Personal.dart';
 import 'package:wildberries/pages/catalog.dart';
 
 
 
-class ShoppingCart extends StatelessWidget {
-  const ShoppingCart({super.key});
+class ShoppingCart extends StatefulWidget {
+  const ShoppingCart({super.key, this.element, this.element1, this.element2});
+  final element;
+  final element1;
+  final element2;
 
+  @override
+  State<ShoppingCart> createState() => _ShoppingCartState();
+}
+
+class _ShoppingCartState extends State<ShoppingCart> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       backgroundColor: const Color.fromARGB(255, 31, 31, 31),
       appBar: AppBar(title: Text('Корзина', style: TextStyle(fontSize: 30), ), backgroundColor: Colors.purple, centerTitle: false,),
-      body: Padding(padding: EdgeInsets.only(top: 9, left: 12,right: 12) , child: 
+      body: element1.isEmpty
+      ? Padding(padding: EdgeInsets.only(top: 9, left: 12,right: 12) , child: 
       Container(
         height: 230,
         decoration: BoxDecoration(color: const Color.fromARGB(255, 65, 65, 65), borderRadius: BorderRadius.circular(10)),
@@ -49,8 +59,49 @@ class ShoppingCart extends StatelessWidget {
           )
 
         ]),
-      ),),
+      ),)
+      :ListView.builder( itemCount: element1.length, itemBuilder: (BuildContext context, index) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            child: Row(
+             
+              children: [
+                
+                Image.asset('${element[index]}', height: 160, width: 160,),
+                SizedBox(width: 60,),
+                Container(
+                  width: 120,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('${element2[index]}', style: TextStyle(color: Colors.white, fontSize: 30),),
+                      SizedBox(height: 30,),
+                      Text('${element1[index]}', style: TextStyle(color: Colors.white, fontSize: 30)),
+                      
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 40,
+                  child: Column(
+                    children: [
+                      IconButton(onPressed: (){setState(() {
+                        element1.remove(element1[index]);
+                        element.remove(element[index]);
+                        element2.remove(element2[index]);
+                      });}, icon: Icon(Icons.clear, color: Colors.red, size: 30,)),
+                      SizedBox(height: 115,)
+                    ],
+                  ),
+                )
+                
+              ],
+            ),
+          ),
+        );
 
+      }),
 
 
 
