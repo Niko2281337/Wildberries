@@ -38,7 +38,7 @@ class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
 
-    return GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.68), itemCount: widget.shoes.length, itemBuilder: ((context, index) {
+    return GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.68,), itemCount: widget.shoes.length, itemBuilder: ((context, index) {
           return GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(item: widget.shoes[index], item2: widget.price[index], item3: widget.brand[index], item4: widget.grade[index],)));
